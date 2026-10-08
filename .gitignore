@@ -1,0 +1,18 @@
+# 环境与数据
+.env
+data/
+*.db
+*.db-wal
+*.db-shm
+
+# 依赖与构建产物
+node_modules/
+frontend/dist/
+__pycache__/
+
+# 本地凭据（入库的是对应 *.example 模板）
+deploy/secrets.py
+client/lua/card.lua
+
+# 部署临时产物
+deploy/card-system.zip

@@ -1,0 +1,20 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body, #app { height: 100%; }
+body { font-family: 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f5f7fa; }
+
+.page { padding: 20px; }
+.card-box { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 1px 4px rgba(0,21,41,.06); }
+.mono { font-family: 'JetBrains Mono', Consolas, monospace; letter-spacing: .5px; }
+
+.key-result {
+  background: #f8f9fb; border: 1px dashed #c0c4cc; border-radius: 6px;
+  padding: 12px; max-height: 320px; overflow: auto;
+}
+.key-result code {
+  display: block; font-family: Consolas, monospace; font-size: 14px;
+  padding: 4px 10px; margin: 3px 0; background: #fff; border-radius: 4px;
+  border: 1px solid #ebeef5; letter-spacing: 1px;
+}
+
+.filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; align-items: center; }
+.filter-bar .el-input, .filter-bar .el-select { width: 180px; }

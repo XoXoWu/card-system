@@ -1,0 +1,37 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: card-app
+    restart: unless-stopped
+    environment:
+      CARD_LISTEN: ":8080"
+      CARD_DB_PATH: "data/data.db"
+      CARD_ADMIN_USER: "${CARD_ADMIN_USER:-admin}"
+      CARD_ADMIN_PASSWORD: "${CARD_ADMIN_PASSWORD:-admin123}"
+      CARD_JWT_SECRET: "${CARD_JWT_SECRET:?请在 .env 中设置 CARD_JWT_SECRET}"
+    volumes:
+      - ./data:/app/data
+    expose:
+      - "8080"
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: card-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      SITE_ADDRESS: "${SITE_ADDRESS:-http://localhost}"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app
+
+volumes:
+  caddy_data:
+  caddy_config:

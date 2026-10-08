@@ -1,0 +1,19 @@
+# 有域名时设 SITE_ADDRESS=card.example.com（自动 HTTPS）
+# 仅 IP 部署时设 SITE_ADDRESS=http://服务器IP（HTTP，待域名就绪后切换）
+{$SITE_ADDRESS:localhost} {
+	encode gzip
+
+	handle /api/* {
+		reverse_proxy app:8080
+	}
+
+	handle {
+		reverse_proxy app:8080
+	}
+
+	header {
+		X-Content-Type-Options nosniff
+		X-Frame-Options DENY
+		Referrer-Policy no-referrer
+	}
+}
